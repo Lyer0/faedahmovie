@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/faedahmovie/static/css/main.8bfdadc5.css",
+    "main.js": "/faedahmovie/static/js/main.c2b51b4a.js",
+    "static/js/787.14e4bc02.chunk.js": "/faedahmovie/static/js/787.14e4bc02.chunk.js",
+    "static/media/batman.jpg": "/faedahmovie/static/media/batman.d79a7a4c34a17f1c7f73.jpg",
+    "static/media/breakingbad.jpg": "/faedahmovie/static/media/breakingbad.71960bbcd7c1a9fe94bf.jpg",
+    "static/media/sonic2.jpg": "/faedahmovie/static/media/sonic2.41d420b37854e43fec80.jpg",
+    "static/media/peacemaker.jpg": "/faedahmovie/static/media/peacemaker.136e7bb5d3f130aed7ff.jpg",
+    "static/media/supernatural.jpg": "/faedahmovie/static/media/supernatural.e67e911e6730466fe8d7.jpg",
+    "static/media/loreng.png": "/faedahmovie/static/media/loreng.82754fcdadd5e0b31179.png",
+    "static/media/doctorstrange.jpg": "/faedahmovie/static/media/doctorstrange.8538d6585090d24a8d26.jpg",
+    "static/media/onepiece.jpg": "/faedahmovie/static/media/onepiece.750d015788204e5fcae8.jpg",
+    "static/media/summertime.jpg": "/faedahmovie/static/media/summertime.5029216d066ca0e69a61.jpg",
+    "static/media/boruto.jpg": "/faedahmovie/static/media/boruto.fcf9cd959758eba5a1a3.jpg",
+    "index.html": "/faedahmovie/index.html",
+    "main.8bfdadc5.css.map": "/faedahmovie/static/css/main.8bfdadc5.css.map",
+    "main.c2b51b4a.js.map": "/faedahmovie/static/js/main.c2b51b4a.js.map",
+    "787.14e4bc02.chunk.js.map": "/faedahmovie/static/js/787.14e4bc02.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8bfdadc5.css",
+    "static/js/main.c2b51b4a.js"
+  ]
+}
