@@ -1,67 +1,44 @@
 import { Card, Container, Row, Col, Image } from "react-bootstrap"
-import batmanImage from "../assets/movie/batman.jpg"
-import doctorstrangeImage from "../assets/movie/doctorstrange.jpg"
-import sonic2Image from "../assets/movie/sonic2.jpg"
+import axios from "axios"
+import { useEffect, useState} from "react"
 
 const Movie = () => {
+  const [movies, setMovies] = useState([])
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/discover/movie`, {
+      params : {
+        api_key : process.env.REACT_APP_TMDB_KEY
+      }
+    }).then((response) => {
+      setMovies(response.data.results)
+    })
+  }, [])
   return (
     <div>
       <Container>
         <br />
-        <h1 className="text-white">MOVIE</h1>
+        <h1 className="text-white text-center d-flex justify-content-center align-items-center">MOVIE</h1>
         <br />
         <Row>
-          <Col md={4} className="movieWrapper" id="movie">
-            <Card className="movieImage">
-              <Image src={batmanImage} alt="batmanmovie" className="images" />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">THE BATMAN</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 5 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col md={4} className="movieWrapper">
-            <Card className="movieImage">
-              <Image src={doctorstrangeImage} alt="doctorstrangemovie" className="images" />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">DOCTOR STRANGE IN THE MULTIVERSE OF MADNESS</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col md={4} className="movieWrapper">
-            <Card className="movieImage">
-              <Image src={sonic2Image} alt="sonic2movie" className="images" />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">SONIC THE HEDGEHOG 2</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
+          {movies.map((result, index) => {
+            return(
+              <Col md={4} className="movieWrapper" id="movie" key={index}>
+                <Card className="movieImage">
+                  <Image src={`${process.env.REACT_APP_IMG_URL}/${result.poster_path}`} alt="test" className="images" />
+                  <div className="bg-dark">
+                    <div className="p-2 m-1 text-white">
+                      <Card.Title className="text-center">{result.title}</Card.Title>
+                      <Card.Text className="text-left">
+                        {result.overview}
+                      </Card.Text>
+                      <Card.Text className="text-left">
+                        {result.release_date}
+                      </Card.Text>
+                    </div>
+                  </div>
+                </Card>
+              </Col>)
+          })}
           </Row>
       </Container>
     </div>

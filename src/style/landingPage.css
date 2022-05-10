@@ -19,11 +19,6 @@
   letter-spacing: 4px;
 }
 
-.anime {
-  height: auto;
-  background: url("../assets/bg/loreng.png");
-  background-size: cover;
-}
 
 .movie {
   height: auto;

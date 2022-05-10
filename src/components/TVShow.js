@@ -1,67 +1,44 @@
 import { Card, Container, Row, Col, Image } from "react-bootstrap"
-import breakingbadImage from "../assets/tvshow/breakingbad.jpg"
-import peacemakerImage from "../assets/tvshow/peacemaker.jpg"
-import supernaturalImage from "../assets/tvshow/supernatural.jpg"
+import axios from "axios"
+import { useEffect, useState} from "react"
 
 const TVShow = () => {
+  const [tvs, setTVS] = useState([])
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/discover/tv`, {
+      params : {
+        api_key : process.env.REACT_APP_TMDB_KEY
+      }
+    }).then((response) => {
+      setTVS(response.data.results)
+    })
+  }, [])
   return (
     <div>
       <Container>
         <br />
-        <h1 className="text-white">TV SHOW</h1>
+        <h1 className="text-white text-center d-flex justify-content-center align-items-center">TV SHOW</h1>
         <br />
         <Row>
-          <Col md={4} className="movieWrapper" id="tvshow">
+        {tvs.map((result, index) => {
+            return(
+              <Col md={4} className="movieWrapper" id="tvshow" key={index}>
             <Card className="movieImage">
-              <Image src={breakingbadImage} alt="breakingbadtvshow" className="images" />
+              <Image src={`${process.env.REACT_APP_IMG_URL}/${result.poster_path}`} alt="testtv" className="images" />
               <div className="bg-dark">
                 <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">BREAKING BAD</Card.Title>
+                  <Card.Title className="text-center">{result.name}</Card.Title>
                   <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
+                    {result.overview}
                   </Card.Text>
                   <Card.Text className="text-left">
-                    Last updated 5 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col md={4} className="movieWrapper">
-            <Card className="movieImage">
-              <Image src={peacemakerImage} alt="peacemakertvshow" className="images" />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">PEACEMAKER</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col md={4} className="movieWrapper">
-            <Card className="movieImage">
-              <Image src={supernaturalImage} alt="supernaturaltvshow" className="images" />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">SUPERNATURAL</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
+                    {result.first_air_date}
+                      </Card.Text>
+                    </div>
+                  </div>
+                </Card>
+              </Col>)
+          })}
           </Row>
       </Container>
     </div>
